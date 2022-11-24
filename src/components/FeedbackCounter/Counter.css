@@ -1,3 +1,11 @@
+.Feedback {
+    margin-left: 10px;
+}
+
+.FeedbackOptions {
+    margin-left: 15px;
+}
+
 .Button {
     background-color: initial;
     border: 1px solid grey;
@@ -7,6 +15,7 @@
 }
 
 .StatisticsTotal {
+    margin-left: 15px;
     display: block;
     font-weight: 500;
     font-size: 20px;
