@@ -2,10 +2,6 @@ import React, {Component} from "react";
 import './Counter.css';
 
 class Counter extends Component {
-    // static defaultProps = {
-    //     initialValue : 0,
-    // };
-
     state = {
         good: 0,
         neutral: 0,
@@ -14,26 +10,26 @@ class Counter extends Component {
         feedbackPositivePercentage: 0,
       }
     
-    handleGoodIncrement = () => { this.setState(prevState =>({good: prevState.good + 1}))};
-    handleNeutralIncrement = () => { this.setState(prevState =>({neutral: prevState.neutral + 1}))};
-    handleBadIncrement = () => { this.setState(prevState =>({bad: prevState.bad + 1}))};
-    countTotalFeedback = () => { this.setState(prevState =>({totalFeedback: prevState.totalFeedback + 1})) };
-    // function countPositiveFeedbackPercentage(good, totalFeedback) { const per = ((this.state.good)/this.state.totalFeedback)*100
-    //  return per
-    // };
+    handleClick = (event) =>{
+        const currentBtn = event.currentTarget.name;
+        this.setState(prevState =>({[currentBtn]: prevState[currentBtn] + 1}))
+        this.setState(prevState =>({totalFeedback: prevState.totalFeedback + 1})) 
+        this.setState(prevState =>
+            ({feedbackPositivePercentage: Math.round(((prevState.good)/prevState.totalFeedback)*100)}))
+    }
 
       render() {
         return (
             <section className="Feedback">
             <h1>Please leave feedback</h1>
-            <div className="FeedbackOptions" onClick={this.countTotalFeedback}>
-                <button className="Button" type="button" onClick={this.handleGoodIncrement}>
+            <div className="FeedbackOptions">
+                <button className="Button" type="button" name="good" onClick={this.handleClick}>
                     Good
                 </button>
-                <button className="Button" type="button" onClick={this.handleNeutralIncrement}>
+                <button className="Button" type="button" name="neutral" onClick={this.handleClick}>
                     Neutral
                 </button>
-                <button className="Button" type="button" onClick={this.handleBadIncrement}>
+                <button className="Button" type="button" name="bad" onClick={this.handleClick}>
                     Bad
                 </button>
             </div>
@@ -43,11 +39,11 @@ class Counter extends Component {
                 <span className="StatisticsTotal">Neutral : {this.state.neutral}</span>
                 <span className="StatisticsTotal">Bad : {this.state.bad}</span>
                 <span className="StatisticsTotal">Total: {this.state.totalFeedback}</span>
-                {/* <span className="StatisticsTotal">Positive feedback: {this.state.feedbackPositivePercentage}%</span> */}
+                <span className="StatisticsTotal">Positive feedback: {this.state.feedbackPositivePercentage}%</span>
             </div>
             </section>
         )
       }
-}
+    }
 
 export default Counter;
