@@ -8,7 +8,7 @@ class Counter extends Component {
         bad: 0,
         totalFeedback: 0,
         feedbackPositivePercentage: 0,
-      }
+        }
     
     handleClick = (event) =>{
         const currentBtn = event.currentTarget.name;
@@ -16,7 +16,7 @@ class Counter extends Component {
         this.setState(prevState =>({totalFeedback: prevState.totalFeedback + 1})) 
         this.setState(prevState =>
             ({feedbackPositivePercentage: Math.round(((prevState.good)/prevState.totalFeedback)*100)}))
-    }
+        }
 
       render() {
         return (
